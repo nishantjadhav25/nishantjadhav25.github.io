@@ -4,258 +4,390 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nishant Jadhav | Portfolio</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <style>
-        /* Modern CSS Reset & Variables */
+        /* CSS Variables & Smooth Scroll */
+        :root {
+            --bg-dark: #030712;
+            --glass-bg: rgba(17, 24, 39, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --accent-cyan: #06b6d4;
+            --accent-purple: #a855f7;
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --neon-glow: drop-shadow(0 0 12px rgba(6, 182, 212, 0.5));
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Inter', sans-serif;
         }
 
-        :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --accent-color: #38bdf8;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --gradient: linear-gradient(135deg, #38bdf8 0%, #c084fc 100%);
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-cyan);
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
             overflow-x: hidden;
-            line-height: 1.6;
+            position: relative;
         }
 
-        /* Subtle Background Glows */
-        .glow {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, rgba(0,0,0,0) 70%);
-            top: -50px;
-            right: -50px;
-            z-index: -1;
+        /* Animated Mesh Gradient Background */
+        .bg-gradient-mesh {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            background: radial-gradient(circle at 0% 0%, rgba(6, 182, 212, 0.15) 0%, transparent 35%),
+                        radial-gradient(circle at 100% 100%, rgba(168, 85, 247, 0.15) 0%, transparent 40%),
+                        radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 1) 0%, rgba(3, 7, 18, 1) 100%);
         }
 
-        /* Navigation Bar */
+        /* Glassmorphism Navigation Bar */
         nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 2rem 5%;
-            width: 100%;
+            padding: 1.2rem 8%;
+            background: rgba(3, 7, 18, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 100;
         }
 
         .logo {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: var(--gradient);
+            font-family: 'Cabinet Grotesk', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            background: linear-gradient(to right, var(--accent-cyan), var(--accent-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            filter: var(--neon-glow);
         }
 
         .nav-links a {
-            color: var(--text-muted);
+            color: var(--text-secondary);
             text-decoration: none;
-            margin-left: 1.5rem;
-            font-size: 0.95rem;
-            transition: color 0.3s ease;
+            margin-left: 2rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: var(--accent-color);
+            color: var(--accent-cyan);
+            text-shadow: 0 0 8px rgba(6, 182, 212, 0.6);
         }
 
         /* Hero Section */
         .hero {
-            min-height: 70vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: flex-start;
+            align-items: center;
+            text-align: center;
             padding: 0 10%;
-            max-width: 1200px;
-            margin: 0 auto;
+            padding-top: 80px;
         }
 
-        .welcome-tag {
-            background: rgba(56, 189, 248, 0.1);
-            color: var(--accent-color);
-            padding: 6px 16px;
+        .welcome-badge {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            padding: 6px 18px;
             border-radius: 100px;
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             font-weight: 600;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
             margin-bottom: 1.5rem;
-            border: 1px solid rgba(56, 189, 248, 0.2);
-            animation: fadeIn 1s ease-in-out;
+            backdrop-filter: blur(5px);
         }
 
         h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 3.5rem;
-            line-height: 1.2;
-            margin-bottom: 1rem;
+            font-family: 'Cabinet Grotesk', sans-serif;
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
         }
 
         h1 span {
-            background: var(--gradient);
+            background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-purple) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .hero-desc {
-            color: var(--text-muted);
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin-bottom: 2.5rem;
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+            max-width: 580px;
+            margin-bottom: 3rem;
+            font-weight: 300;
         }
 
-        /* CTA Button */
+        /* Glassmorphic Cyber Button */
         .cta-btn {
+            position: relative;
             display: inline-block;
-            padding: 14px 28px;
-            background: var(--gradient);
-            color: #000;
-            font-weight: 600;
+            padding: 14px 32px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 0.95rem;
             text-decoration: none;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(56, 189, 248, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 100px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
         }
 
         .cta-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 25px rgba(56, 189, 248, 0.5);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+            transform: translateY(-2px);
+            color: #000;
+            background: var(--text-primary);
         }
 
-        /* Features/Cards Section */
-        .projects-section {
-            padding: 5rem 10%;
+        /* Premium Glass Grid Section */
+        .showcase {
+            padding: 7rem 10%;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .section-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2rem;
-            margin-bottom: 2.5rem;
-            position: relative;
+            font-family: 'Cabinet Grotesk', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 4rem;
+            letter-spacing: -0.5px;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
         }
 
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 2rem;
-            border-radius: 12px;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-            cursor: pointer;
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            padding: 2.5rem;
+            border-radius: 24px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(56, 189, 248, 0.3);
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(168, 85, 247, 0.1));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(6, 182, 212, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .glass-card:hover::before {
+            opacity: 1;
         }
 
         .card-icon {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
             display: inline-block;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 12px;
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
         }
 
-        .card h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
+        .glass-card h3 {
+            font-family: 'Cabinet Grotesk', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
         }
 
-        .card p {
-            color: var(--text-muted);
+        .glass-card p {
+            color: var(--text-secondary);
             font-size: 0.95rem;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        /* Custom Live Popup Alert */
+        .toast-alert {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            backdrop-filter: blur(12px);
+            padding: 16px 24px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            z-index: 1000;
+            animation: slideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .toast-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-cyan);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent-cyan);
+            animation: pulse 1.5s infinite;
+        }
+
+        .toast-alert p {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-primary);
         }
 
         /* Footer */
         footer {
             text-align: center;
-            padding: 3rem;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            margin-top: 5rem;
+            padding: 4rem;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 300;
+            border-top: 1px solid var(--glass-border);
+            margin-top: 6rem;
+            background: rgba(3, 7, 18, 0.4);
         }
 
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Animations Keyframes */
+        @keyframes slideIn {
+            from { transform: translateX(120%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
         }
 
-        /* Responsive Design for Mobile */
+        @keyframes pulse {
+            0% { transform: scale(0.9); opacity: 0.6; }
+            50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 14px var(--accent-cyan); }
+            100% { transform: scale(0.9); opacity: 0.6; }
+        }
+
+        /* Responsive UI for Mobile Phones */
         @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            .hero { padding: 0 5%; min-height: 60vh; }
-            .projects-section { padding: 3rem 5%; }
-            .nav-links { display: none; } /* Mobile basic fix */
+            h1 { font-size: 2.8rem; }
+            .hero { padding: 0 6%; justify-content: center; min-height: 90vh; }
+            .showcase { padding: 4rem 6%; }
+            .nav-links { display: none; }
+            nav { padding: 1.2rem 6%; }
+            .toast-alert { bottom: 16px; right: 16px; left: 16px; justify-content: center; }
         }
     </style>
 </head>
 <body>
 
-    <div class="glow"></div>
+    <div class="bg-gradient-mesh"></div>
 
     <nav>
-        <div class="logo">NJ.DEV</div>
+        <div class="logo">NJ.OS</div>
         <div class="nav-links">
-            <a href="#about">About</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
+            <a href="#home">Home</a>
+            <a href="#work">Work</a>
+            <a href="#footer">Contact</a>
         </div>
     </nav>
 
-    <section class="hero" id="about">
-        <div class="welcome-tag">WELCOME TO MY SPACE</div>
+    <section class="hero" id="home">
+        <div class="welcome-badge">Systems Initialized // 2026</div>
         <h1>Hi, I am <span>Nishant Jadhav</span></h1>
-        <p class="hero-desc">Banging the code, creating neat web experiences, and modifying digital spaces. Welcome to my creative portfolio.</p>
-        <a href="#projects" class="cta-btn">Explore Work</a>
+        <p class="hero-desc">Crafting high-end web layouts, deploying sleek interfaces, and reverse-engineering the digital experience.</p>
+        <a href="#work" class="cta-btn">Initialize Experience</a>
     </section>
 
-    <section class="projects-section" id="projects">
-        <h2 class="section-title">What I Do</h2>
+    <section class="showcase" id="work">
+        <h2 class="section-title">Core Operations</h2>
         <div class="grid">
-            <div class="card">
-                <span class="card-icon">💻</span>
-                <h3>Web Development</h3>
-                <p>Creating fast, modern, and highly responsive static web applications using fresh UI designs.</p>
-            </div>
-            <div class="card">
+            
+            <div class="glass-card">
                 <span class="card-icon">⚡</span>
-                <h3>Modding & Scripts</h3>
-                <p>Exploring Android software modification, custom tools, and reverse engineering setups.</p>
+                <h3>Next-Gen UI Design</h3>
+                <p>Developing ultra-smooth dark mode designs using responsive glassmorphism rules and modern font tech.</p>
             </div>
-            <div class="card">
-                <span class="card-icon">🎨</span>
-                <h3>UI/UX Design</h3>
-                <p>Focusing on glassmorphism, dark themes, and premium user experience aesthetics.</p>
+
+            <div class="glass-card">
+                <span class="card-icon">⚔️</span>
+                <h3>Modding & Architecture</h3>
+                <p>Analyzing library binaries, memory modification scripts, and developing deep Android system optimization tools.</p>
             </div>
+
+            <div class="glass-card">
+                <span class="card-icon">🚀</span>
+                <h3>Static Architecture</h3>
+                <p>Deploying heavy-duty frontends on top of lightweight, zero-cost, blazing-fast cloud networks.</p>
+            </div>
+
         </div>
     </section>
 
-    <footer>
-        <p>&copy; 2026 Nishant Jadhav. Made with Code.</p>
+    <div class="toast-alert">
+        <div class="toast-dot"></div>
+        <p>Secure connection established via GitHub Pages.</p>
+    </div>
+
+    <footer id="footer">
+        <p>&copy; 2026 NJ.OS. All protocols fully operational.</p>
     </footer>
 
 </body>
