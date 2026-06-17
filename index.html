@@ -160,6 +160,15 @@
             font-weight: 300;
         }
 
+        /* Button Container */
+        .cta-container {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
         /* Glassmorphic Cyber Button */
         .cta-btn {
             position: relative;
@@ -184,6 +193,19 @@
             transform: translateY(-2px);
             color: #000;
             background: var(--text-primary);
+        }
+
+        /* Telegram Special Accent Button */
+        .tg-btn {
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            color: var(--accent-cyan);
+        }
+
+        .tg-btn:hover {
+            background: var(--accent-cyan);
+            color: #000;
+            box-shadow: 0 0 25px rgba(6, 182, 212, 0.5);
         }
 
         /* Premium Glass Grid Section */
@@ -333,6 +355,8 @@
             .nav-links { display: none; }
             nav { padding: 1.2rem 6%; }
             .toast-alert { bottom: 16px; right: 16px; left: 16px; justify-content: center; }
+            .cta-container { flex-direction: column; gap: 1rem; width: 100%; }
+            .cta-btn { width: 80%; max-width: 300px; text-align: center; }
         }
     </style>
 </head>
@@ -353,7 +377,11 @@
         <div class="welcome-badge">Systems Initialized // 2026</div>
         <h1>Hi, I am <span>Nishant Jadhav</span></h1>
         <p class="hero-desc">Crafting high-end web layouts, deploying sleek interfaces, and reverse-engineering the digital experience.</p>
-        <a href="#work" class="cta-btn">Initialize Experience</a>
+        
+        <div class="cta-container">
+            <a href="#work" class="cta-btn">Initialize Experience</a>
+            <a href="https://t.me/YOUR_CHANNEL_USERNAME" target="_blank" class="cta-btn tg-btn">Join Telegram Channel</a>
+        </div>
     </section>
 
     <section class="showcase" id="work">
@@ -392,4 +420,3 @@
 
 </body>
 </html>
-
