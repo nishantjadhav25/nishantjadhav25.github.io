@@ -195,7 +195,7 @@
             background: var(--text-primary);
         }
 
-        /* Telegram Special Accent Button */
+        /* Telegram & YouTube Special Accent Button */
         .tg-btn {
             background: rgba(6, 182, 212, 0.1);
             border: 1px solid rgba(6, 182, 212, 0.3);
@@ -290,6 +290,135 @@
             line-height: 1.6;
         }
 
+        /* Projects Section Styling */
+        .projects {
+            padding: 5rem 10%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            color: var(--text-secondary);
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            border-color: var(--accent-cyan);
+            color: var(--text-primary);
+            background: rgba(6, 182, 212, 0.1);
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .project-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 24px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(168, 85, 247, 0.4);
+            box-shadow: 0 15px 35px rgba(168, 85, 247, 0.15);
+        }
+
+        .project-status {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--accent-purple);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .project-card h3 {
+            font-family: 'Cabinet Grotesk', sans-serif;
+            font-size: 1.35rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .proj-link {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .proj-link:hover {
+            color: var(--accent-cyan);
+        }
+
+        .project-card.hidden {
+            display: none;
+        }
+
         /* Custom Live Popup Alert*/
         .toast-alert {
             position: fixed;
@@ -352,6 +481,7 @@
             h1 { font-size: 2.8rem; }
             .hero { padding: 0 6%; justify-content: center; min-height: 90vh; }
             .showcase { padding: 4rem 6%; }
+            .projects { padding: 4rem 6%; }
             .nav-links { display: none; }
             nav { padding: 1.2rem 6%; }
             .toast-alert { bottom: 16px; right: 16px; left: 16px; justify-content: center; }
@@ -368,11 +498,13 @@
         <div class="logo">NJ DEV OFC</div>
         <div class="nav-links">
             <a href="#home">Home</a>
-            <a href="#work">Work</a>
+            <a href="#work">Capabilities</a>
+            <a href="#projects">Projects</a>
             <a href="#footer">Contact</a>
         </div>
     </nav>
 
+    <!-- Hero Section (Fixed Container Issues) -->
     <section class="hero" id="home">
         <div class="welcome-badge">Systems Initialized // 2026</div>
         <h1>Hi, I am <span>Nishant Jadhav</span></h1>
@@ -381,15 +513,11 @@
         <div class="cta-container">
             <a href="#work" class="cta-btn">Initialize Experience</a>
             <a href="https://t.me/NJ_CHE4TS_FF_OFC" target="_blank" class="cta-btn tg-btn">Join Telegram Channel</a>
-        </div>
-    </section>
-    <div class="cta-container">
-            <a href="#work" class="cta-btn">Initialize Experience</a>
-            <a href="https://t.me/NJ_CHE4TS_FF_OFC" target="_blank" class="cta-btn tg-btn">Join YouTube Channel</a>
+            <a href="#" target="_blank" class="cta-btn tg-btn">Join YouTube Channel</a>
         </div>
     </section>
 
-
+    <!-- Capabilities Section -->
     <section class="showcase" id="work">
         <h2 class="section-title">Core Operations</h2>
         <div class="grid">
@@ -415,6 +543,70 @@
         </div>
     </section>
 
+    <!-- Operational Projects Section with Filtering -->
+    <section class="projects" id="projects">
+        <h2 class="section-title">Operational Deployments</h2>
+
+        <div class="filter-container">
+            <button class="filter-btn active" data-filter="all">All Operations</button>
+            <button class="filter-btn" data-filter="cpp">C++</button>
+            <button class="filter-btn" data-filter="python">Python</button>
+            <button class="filter-btn" data-filter="reverse-engineering">Reverse Eng.</button>
+            <button class="filter-btn" data-filter="linux">Linux</button>
+        </div>
+
+        <div class="project-grid">
+
+            <!-- Project Card 1 -->
+            <div class="project-card" data-tags="cpp,python">
+                <div>
+                    <div class="project-status"><span style="color: var(--accent-cyan);">●</span> Completed</div>
+                    <h3>VectorCalc Engine</h3>
+                    <p>An advanced command-line mathematical parsing engine built to handle trigonometric computations, roots, and complex operational parsing logic securely.</p>
+                    <div class="tech-tags">
+                        <span class="tag">C++</span>
+                        <span class="tag">Python</span>
+                    </div>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="proj-link">View Source →</a>
+                </div>
+            </div>
+
+            <!-- Project Card 2 -->
+            <div class="project-card" data-tags="python,reverse-engineering">
+                <div>
+                    <div class="project-status"><span>●</span> Operational</div>
+                    <h3>DexArmor Patching Utility</h3>
+                    <p>Automated reverse-engineering scripts deployed to analyze native Android binaries, handling memory mapping optimizations and instruction rewriting.</p>
+                    <div class="tech-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Reverse Eng.</span>
+                    </div>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="proj-link">View Source →</a>
+                </div>
+            </div>
+
+            <!-- Project Card 3 -->
+            <div class="project-card" data-tags="linux">
+                <div>
+                    <div class="project-status"><span>●</span> Research</div>
+                    <h3>System Sandbox Environment</h3>
+                    <p>Custom environment configuration rules for mobile architecture testing, optimizing subsystem performance layers and low-level diagnostic reporting.</p>
+                    <div class="tech-tags">
+                        <span class="tag">Linux</span>
+                    </div>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="proj-link">Documentation →</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
     <div class="toast-alert">
         <div class="toast-dot"></div>
         <p>Secure connection established via GitHub Pages.</p>
@@ -424,5 +616,31 @@
         <p>&copy; 2026 NJ DEV All protocols fully operational.</p>
     </footer>
 
+    <!-- Interactive Filtering Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    const targetFilter = button.getAttribute('data-filter');
+
+                    projectCards.forEach(card => {
+                        const cardTags = card.getAttribute('data-tags').split(',');
+
+                        if (targetFilter === 'all' || cardTags.includes(targetFilter)) {
+                            card.classList.remove('hidden');
+                        } else {
+                            card.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
 </body>
 </html>
