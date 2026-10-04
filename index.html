@@ -1,646 +1,339 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nishant Jadhav | Portfolio</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght=700;800&family=Inter:wght=300;400;500;600&display=swap" rel="stylesheet">
-    
-    <style>
-        /* CSS Variables & Smooth Scroll */
-        :root {
-            --bg-dark: #030712;
-            --glass-bg: rgba(17, 24, 39, 0.7);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --accent-cyan: #06b6d4;
-            --accent-purple: #a855f7;
-            --text-primary: #f3f4f6;
-            --text-secondary: #9ca3af;
-            --neon-glow: drop-shadow(0 0 12px rgba(6, 182, 212, 0.5));
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Nishant Jadhav: web developer building fast, polished interfaces and Android tooling.">
+<meta name="theme-color" content="#05070f">
+<title>Nishant Jadhav | Portfolio</title>
 
-        html {
-            scroll-behavior: smooth;
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Fixed: "wght@" (not "wght="), and fonts that actually exist on Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
+<style>
+:root{
+  --bg:#05070f; --surface:rgba(16,22,38,.62); --line:rgba(255,255,255,.08);
+  --cyan:#22d3ee; --violet:#a78bfa; --text:#eef2f7; --muted:#9aa6ba;
+  --head:'Space Grotesk',system-ui,sans-serif;
+  --body:'Inter',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:6px}
+::-webkit-scrollbar{width:8px}::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:#1f2a44;border-radius:10px}::-webkit-scrollbar-thumb:hover{background:var(--cyan)}
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-dark);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-cyan);
-        }
+/* Background: soft aurora + fine grid */
+.bg{position:fixed;inset:0;z-index:-1;overflow:hidden;
+  background:radial-gradient(ellipse at 50% 120%,#0b1226 0%,var(--bg) 60%)}
+.bg::before{content:"";position:absolute;inset:0;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:56px 56px;opacity:.35;
+  mask-image:radial-gradient(ellipse at 50% 30%,#000 0%,transparent 70%);
+  -webkit-mask-image:radial-gradient(ellipse at 50% 30%,#000 0%,transparent 70%)}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.45;animation:drift 18s ease-in-out infinite alternate}
+.orb.a{width:46vmax;height:46vmax;background:#0891b2;top:-18vmax;left:-12vmax}
+.orb.b{width:42vmax;height:42vmax;background:#7c3aed;bottom:-20vmax;right:-14vmax;animation-delay:-9s}
+@keyframes drift{to{transform:translate(6vmax,4vmax) scale(1.12)}}
 
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-primary);
-            overflow-x: hidden;
-            position: relative;
-        }
+/* Nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+  padding:.9rem max(6%,1.25rem);background:rgba(5,7,15,.62);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.logo{font-family:var(--head);font-weight:700;font-size:1.2rem;text-decoration:none;letter-spacing:.5px;
+  background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent}
+.links{display:flex;gap:.4rem}
+.links a{color:var(--muted);text-decoration:none;font-size:.92rem;font-weight:500;padding:.45rem .9rem;border-radius:99px;transition:.25s}
+.links a:hover{color:var(--text);background:rgba(255,255,255,.06)}
+.menu-btn{display:none;background:none;border:1px solid var(--line);color:var(--text);width:42px;height:42px;border-radius:12px;cursor:pointer}
+.menu-btn span{display:block;width:18px;height:2px;background:currentColor;margin:4px auto;transition:.3s}
+.menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0}
+.menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
 
-        /* Animated Mesh Gradient Background */
-        .bg-gradient-mesh {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -2;
-            background: radial-gradient(circle at 0% 0%, rgba(6, 182, 212, 0.15) 0%, transparent 35%),
-                        radial-gradient(circle at 100% 100%, rgba(168, 85, 247, 0.15) 0%, transparent 40%),
-                        radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 1) 0%, rgba(3, 7, 18, 1) 100%);
-        }
+/* Hero */
+.hero{min-height:100svh;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:3rem;
+  max-width:1200px;margin:0 auto;padding:7rem max(6%,1.25rem) 4rem}
+.badge{display:inline-flex;align-items:center;gap:.6rem;padding:.4rem 1rem;border:1px solid var(--line);border-radius:99px;
+  background:rgba(255,255,255,.03);font-size:.82rem;color:var(--muted);margin-bottom:1.5rem}
+.badge i{width:8px;height:8px;border-radius:50%;background:#34d399;box-shadow:0 0 10px #34d399;animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.4}}
+h1{font-family:var(--head);font-size:clamp(2.6rem,6.2vw,4.8rem);line-height:1.04;letter-spacing:-.03em;margin-bottom:1.4rem}
+h1 .grad{background:linear-gradient(120deg,var(--cyan),var(--violet) 70%);-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent}
+.lead{color:var(--muted);font-size:1.12rem;font-weight:300;max-width:34rem;margin-bottom:2.2rem}
+.cta{display:flex;flex-wrap:wrap;gap:.9rem}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.6rem;border-radius:99px;font-weight:500;font-size:.95rem;
+  text-decoration:none;border:1px solid var(--line);background:rgba(255,255,255,.04);transition:.3s}
+.btn:hover{transform:translateY(-2px);border-color:var(--cyan);box-shadow:0 8px 30px rgba(34,211,238,.18)}
+.btn.primary{background:linear-gradient(120deg,var(--cyan),#6366f1);border-color:transparent;color:#04101a;font-weight:600}
+.btn.primary:hover{box-shadow:0 10px 36px rgba(99,102,241,.45)}
 
-        /* Glassmorphism Navigation Bar */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.2rem 8%;
-            background: rgba(3, 7, 18, 0.6);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--glass-border);
-            z-index: 100;
-        }
+/* Signature element: terminal card */
+.term{border:1px solid var(--line);border-radius:20px;background:var(--surface);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);
+  box-shadow:0 30px 80px rgba(0,0,0,.5),0 0 0 1px rgba(34,211,238,.05) inset;overflow:hidden;transform:rotate(1.2deg)}
+.term-bar{display:flex;align-items:center;gap:.45rem;padding:.8rem 1rem;border-bottom:1px solid var(--line);background:rgba(255,255,255,.02)}
+.term-bar i{width:11px;height:11px;border-radius:50%}
+.term-bar i:nth-child(1){background:#f87171}.term-bar i:nth-child(2){background:#fbbf24}.term-bar i:nth-child(3){background:#34d399}
+.term-bar span{margin-left:auto;font:400 .75rem var(--mono);color:var(--muted)}
+.term pre{padding:1.4rem 1.3rem;font:400 .85rem/1.85 var(--mono);color:#c8d3e6;white-space:pre-wrap;min-height:15rem}
+.k{color:var(--violet)}.s{color:#6ee7b7}.c{color:#64748b}.f{color:var(--cyan)}
+.caret{display:inline-block;width:8px;height:1em;background:var(--cyan);vertical-align:-2px;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
 
-        .logo {
-            font-family: 'Cabinet Grotesk', sans-serif;
-            font-size: 1.4rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-            background: linear-gradient(to right, var(--accent-cyan), var(--accent-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: var(--neon-glow);
-        }
+/* Sections */
+section.block{max-width:1200px;margin:0 auto;padding:5.5rem max(6%,1.25rem)}
+.sec-head{margin-bottom:3rem;max-width:38rem}
+h2{font-family:var(--head);font-size:clamp(1.9rem,4vw,2.7rem);letter-spacing:-.02em;line-height:1.15;margin-bottom:.7rem}
+.sec-head p{color:var(--muted);font-weight:300}
 
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            margin-left: 2rem;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.4rem}
+.card{position:relative;padding:2rem;border:1px solid var(--line);border-radius:22px;background:var(--surface);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);transition:transform .35s,border-color .35s,box-shadow .35s;overflow:hidden}
+.card::after{content:"";position:absolute;inset:0;background:radial-gradient(400px circle at var(--x,50%) var(--y,0%),rgba(34,211,238,.12),transparent 60%);
+  opacity:0;transition:opacity .3s;pointer-events:none}
+.card:hover{transform:translateY(-6px);border-color:rgba(34,211,238,.3);box-shadow:0 22px 50px rgba(0,0,0,.4)}
+.card:hover::after{opacity:1}
+.ico{width:48px;height:48px;display:grid;place-items:center;border-radius:14px;margin-bottom:1.3rem;
+  background:linear-gradient(135deg,rgba(34,211,238,.18),rgba(167,139,250,.18));border:1px solid var(--line)}
+.ico svg{width:24px;height:24px;stroke:var(--cyan);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.card h3{font-family:var(--head);font-size:1.25rem;margin-bottom:.55rem}
+.card p{color:var(--muted);font-size:.95rem;font-weight:300}
 
-        .nav-links a:hover {
-            color: var(--accent-cyan);
-            text-shadow: 0 0 8px rgba(6, 182, 212, 0.6);
-        }
+/* Projects */
+.filters{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:2rem}
+.filters button{font:500 .85rem var(--body);color:var(--muted);background:rgba(255,255,255,.03);border:1px solid var(--line);
+  padding:.55rem 1.15rem;border-radius:99px;cursor:pointer;transition:.25s}
+.filters button:hover{color:var(--text)}
+.filters button.active{color:#04101a;background:var(--cyan);border-color:var(--cyan);font-weight:600}
+.proj{display:flex;flex-direction:column;justify-content:space-between;gap:1.4rem}
+.proj[hidden]{display:none}
+.status{display:inline-flex;align-items:center;gap:.5rem;font-size:.8rem;font-weight:500;color:var(--violet);margin-bottom:.8rem}
+.status i{width:7px;height:7px;border-radius:50%;background:currentColor;box-shadow:0 0 8px currentColor}
+.status.done{color:#34d399}.status.live{color:var(--cyan)}
+.tags{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:1.2rem}
+.tag{font:400 .74rem var(--mono);padding:.25rem .65rem;border-radius:8px;border:1px solid var(--line);color:var(--muted);background:rgba(255,255,255,.03)}
+.plink{font-weight:500;font-size:.9rem;text-decoration:none;color:var(--text);border-bottom:1px solid var(--cyan);padding-bottom:2px;transition:.25s}
+.plink:hover{color:var(--cyan)}
 
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 10%;
-            padding-top: 80px;
-        }
+/* Toast */
+.toast{position:fixed;right:20px;bottom:20px;z-index:80;display:flex;align-items:center;gap:.8rem;padding:.9rem 1rem .9rem 1.2rem;
+  max-width:340px;border:1px solid rgba(34,211,238,.3);border-radius:16px;background:rgba(10,16,30,.88);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 14px 40px rgba(0,0,0,.5);
+  animation:in .6s cubic-bezier(.16,1,.3,1);transition:opacity .4s,transform .4s}
+.toast.out{opacity:0;transform:translateY(20px);pointer-events:none}
+.toast i{flex:none;width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
+.toast p{font-size:.85rem}
+.toast button{flex:none;background:none;border:0;color:var(--muted);font-size:1.3rem;line-height:1;cursor:pointer;padding:0 .3rem}
+.toast button:hover{color:var(--text)}
+@keyframes in{from{transform:translateX(120%);opacity:0}}
 
-        .welcome-badge {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--glass-border);
-            padding: 6px 18px;
-            border-radius: 100px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            color: var(--accent-cyan);
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
-            backdrop-filter: blur(5px);
-        }
+footer{text-align:center;padding:3rem 1.25rem;border-top:1px solid var(--line);color:var(--muted);font-size:.88rem;background:rgba(5,7,15,.5)}
+footer .soc{display:flex;justify-content:center;gap:1.2rem;margin-bottom:1rem}
+footer a{text-decoration:none;color:var(--text)}footer a:hover{color:var(--cyan)}
 
-        h1 {
-            font-family: 'Cabinet Grotesk', sans-serif;
-            font-size: 4.5rem;
-            font-weight: 800;
-            line-height: 1.1;
-            letter-spacing: -1px;
-            margin-bottom: 1.5rem;
-            max-width: 800px;
-        }
-
-        h1 span {
-            background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-purple) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-desc {
-            color: var(--text-secondary);
-            font-size: 1.15rem;
-            max-width: 580px;
-            margin-bottom: 3rem;
-            font-weight: 300;
-        }
-
-        /* Button Container */
-        .cta-container {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        /* Glassmorphic Cyber Button */
-        .cta-btn {
-            position: relative;
-            display: inline-block;
-            padding: 14px 32px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--glass-border);
-            color: var(--text-primary);
-            font-weight: 500;
-            font-size: 0.95rem;
-            text-decoration: none;
-            border-radius: 100px;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-            transition: all 0.4s ease;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
-        }
-
-        .cta-btn:hover {
-            border-color: var(--accent-cyan);
-            box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
-            transform: translateY(-2px);
-            color: #000;
-            background: var(--text-primary);
-        }
-
-        /* Telegram & YouTube Special Accent Button */
-        .tg-btn {
-            background: rgba(6, 182, 212, 0.1);
-            border: 1px solid rgba(6, 182, 212, 0.3);
-            color: var(--accent-cyan);
-        }
-
-        .tg-btn:hover {
-            background: var(--accent-cyan);
-            color: #000;
-            box-shadow: 0 0 25px rgba(6, 182, 212, 0.5);
-        }
-
-        /* Premium Glass Grid Section */
-        .showcase {
-            padding: 7rem 10%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-family: 'Cabinet Grotesk', sans-serif;
-            font-size: 2.2rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 4rem;
-            letter-spacing: -0.5px;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-        }
-
-        /* Glassmorphism Cards */
-        .glass-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            padding: 2.5rem;
-            border-radius: 24px;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .glass-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(168, 85, 247, 0.1));
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            z-index: -1;
-        }
-
-        .glass-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            border-color: rgba(6, 182, 212, 0.3);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .glass-card:hover::before {
-            opacity: 1;
-        }
-
-        .card-icon {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 12px;
-            border-radius: 16px;
-            border: 1px solid var(--glass-border);
-        }
-
-        .glass-card h3 {
-            font-family: 'Cabinet Grotesk', sans-serif;
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-        }
-
-        .glass-card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            font-weight: 300;
-            line-height: 1.6;
-        }
-
-        /* Projects Section Styling */
-        .projects {
-            padding: 5rem 10%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .filter-container {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--glass-border);
-            color: var(--text-secondary);
-            padding: 8px 20px;
-            border-radius: 100px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            cursor: pointer;
-            backdrop-filter: blur(5px);
-            transition: all 0.3s ease;
-        }
-
-        .filter-btn:hover, .filter-btn.active {
-            border-color: var(--accent-cyan);
-            color: var(--text-primary);
-            background: rgba(6, 182, 212, 0.1);
-            box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
-        }
-
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .project-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-radius: 24px;
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(168, 85, 247, 0.4);
-            box-shadow: 0 15px 35px rgba(168, 85, 247, 0.15);
-        }
-
-        .project-status {
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: var(--accent-purple);
-            margin-bottom: 0.75rem;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .project-card h3 {
-            font-family: 'Cabinet Grotesk', sans-serif;
-            font-size: 1.35rem;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .project-card p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-            font-weight: 300;
-        }
-
-        .tech-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .tag {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--glass-border);
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .proj-link {
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--text-primary);
-            text-decoration: none;
-            transition: color 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .proj-link:hover {
-            color: var(--accent-cyan);
-        }
-
-        .project-card.hidden {
-            display: none;
-        }
-
-        /* Custom Live Popup Alert*/
-        .toast-alert {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid rgba(6, 182, 212, 0.3);
-            backdrop-filter: blur(12px);
-            padding: 16px 24px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            z-index: 1000;
-            animation: slideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .toast-dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--accent-cyan);
-            border-radius: 50%;
-            box-shadow: 0 0 8px var(--accent-cyan);
-            animation: pulse 1.5s infinite;
-        }
-
-        .toast-alert p {
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--text-primary);
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 4rem;
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            font-weight: 300;
-            border-top: 1px solid var(--glass-border);
-            margin-top: 6rem;
-            background: rgba(3, 7, 18, 0.4);
-        }
-
-        /* Animations Keyframes */
-        @keyframes slideIn {
-            from { transform: translateX(120%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(0.9); opacity: 0.6; }
-            50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 14px var(--accent-cyan); }
-            100% { transform: scale(0.9); opacity: 0.6; }
-        }
-
-        /* Responsive UI for Mobile Phones */
-        @media (max-width: 768px) {
-            h1 { font-size: 2.8rem; }
-            .hero { padding: 0 6%; justify-content: center; min-height: 90vh; }
-            .showcase { padding: 4rem 6%; }
-            .projects { padding: 4rem 6%; }
-            .nav-links { display: none; }
-            nav { padding: 1.2rem 6%; }
-            .toast-alert { bottom: 16px; right: 16px; left: 16px; justify-content: center; }
-            .cta-container { flex-direction: column; gap: 1rem; width: 100%; }
-            .cta-btn { width: 80%; max-width: 300px; text-align: center; }
-        }
-    </style>
+/* Mobile */
+@media(max-width:860px){
+  .hero{grid-template-columns:1fr;padding-top:6.5rem;gap:2.5rem}
+  .term{transform:none}
+  .menu-btn{display:block}
+  .links{position:absolute;top:100%;left:0;right:0;flex-direction:column;padding:.8rem max(6%,1.25rem) 1.2rem;gap:.2rem;
+    background:rgba(5,7,15,.96);border-bottom:1px solid var(--line);
+    transform:translateY(-12px);opacity:0;visibility:hidden;transition:.3s}
+  .links.open{transform:none;opacity:1;visibility:visible}
+  .links a{padding:.8rem 1rem;font-size:1rem}
+  section.block{padding:4rem max(6%,1.25rem)}
+  .toast{left:16px;right:16px;bottom:16px;max-width:none}
+  .btn{flex:1 1 100%;justify-content:center}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+</style>
 </head>
 <body>
 
-    <div class="bg-gradient-mesh"></div>
+<div class="bg" aria-hidden="true"><div class="orb a"></div><div class="orb b"></div></div>
 
-    <nav>
-        <div class="logo">NJ DEV OFC</div>
-        <div class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#work">Capabilities</a>
-            <a href="#projects">Projects</a>
-            <a href="#footer">Contact</a>
-        </div>
-    </nav>
+<nav>
+  <a class="logo" href="#home">NJ Dev</a>
+  <button class="menu-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+  <div class="links" id="menu">
+    <a href="#home">Home</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
 
-    <!-- Hero Section (Fixed Container Issues) -->
-    <section class="hero" id="home">
-        <div class="welcome-badge">Systems Initialized // 2026</div>
-        <h1>Hi, I am <span>Nishant Jadhav</span></h1>
-        <p class="hero-desc">Crafting high-end web layouts, deploying sleek interfaces, and reverse-engineering the digital experience.</p>
-        
-        <div class="cta-container">
-            <a href="#work" class="cta-btn">Initialize Experience</a>
-            <a href="https://t.me/NJ_CHE4TS_FF_OFC" target="_blank" class="cta-btn tg-btn">Join Telegram Channel</a>
-            <a href="#" target="_blank" class="cta-btn tg-btn">Join YouTube Channel</a>
-        </div>
-    </section>
-
-    <!-- Capabilities Section -->
-    <section class="showcase" id="work">
-        <h2 class="section-title">Core Operations</h2>
-        <div class="grid">
-            
-            <div class="glass-card">
-                <span class="card-icon">⚡</span>
-                <h3>Next-Gen UI Design</h3>
-                <p>Developing ultra-smooth dark mode designs using responsive glassmorphism rules and modern font tech.</p>
-            </div>
-
-            <div class="glass-card">
-                <span class="card-icon">⚔️</span>
-                <h3>Modding & Architecture</h3>
-                <p>Analyzing library binaries, memory modification scripts, and developing deep Android system optimization tools.</p>
-            </div>
-
-            <div class="glass-card">
-                <span class="card-icon">🚀</span>
-                <h3>Static Architecture</h3>
-                <p>Deploying heavy-duty frontends on top of lightweight, zero-cost, blazing-fast cloud networks.</p>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Operational Projects Section with Filtering -->
-    <section class="projects" id="projects">
-        <h2 class="section-title">Operational Deployments</h2>
-
-        <div class="filter-container">
-            <button class="filter-btn active" data-filter="all">All Operations</button>
-            <button class="filter-btn" data-filter="cpp">C++</button>
-            <button class="filter-btn" data-filter="python">Python</button>
-            <button class="filter-btn" data-filter="reverse-engineering">Reverse Eng.</button>
-            <button class="filter-btn" data-filter="linux">Linux</button>
-        </div>
-
-        <div class="project-grid">
-
-            <!-- Project Card 1 -->
-            <div class="project-card" data-tags="cpp,python">
-                <div>
-                    <div class="project-status"><span style="color: var(--accent-cyan);">●</span> Completed</div>
-                    <h3>VectorCalc Engine</h3>
-                    <p>An advanced command-line mathematical parsing engine built to handle trigonometric computations, roots, and complex operational parsing logic securely.</p>
-                    <div class="tech-tags">
-                        <span class="tag">C++</span>
-                        <span class="tag">Python</span>
-                    </div>
-                </div>
-                <div class="project-links">
-                    <a href="#" class="proj-link">View Source →</a>
-                </div>
-            </div>
-
-            <!-- Project Card 2 -->
-            <div class="project-card" data-tags="python,reverse-engineering">
-                <div>
-                    <div class="project-status"><span>●</span> Operational</div>
-                    <h3>DexArmor Patching Utility</h3>
-                    <p>Automated reverse-engineering scripts deployed to analyze native Android binaries, handling memory mapping optimizations and instruction rewriting.</p>
-                    <div class="tech-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">Reverse Eng.</span>
-                    </div>
-                </div>
-                <div class="project-links">
-                    <a href="#" class="proj-link">View Source →</a>
-                </div>
-            </div>
-
-            <!-- Project Card 3 -->
-            <div class="project-card" data-tags="linux">
-                <div>
-                    <div class="project-status"><span>●</span> Research</div>
-                    <h3>System Sandbox Environment</h3>
-                    <p>Custom environment configuration rules for mobile architecture testing, optimizing subsystem performance layers and low-level diagnostic reporting.</p>
-                    <div class="tech-tags">
-                        <span class="tag">Linux</span>
-                    </div>
-                </div>
-                <div class="project-links">
-                    <a href="#" class="proj-link">Documentation →</a>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <div class="toast-alert">
-        <div class="toast-dot"></div>
-        <p>Secure connection established via GitHub Pages.</p>
+<header class="hero" id="home">
+  <div>
+    <div class="badge"><i></i> Open to new projects</div>
+    <h1>Hi, I'm <span class="grad">Nishant Jadhav</span></h1>
+    <p class="lead">I build fast, polished web interfaces and dig into how Android apps work under the hood.</p>
+    <div class="cta">
+      <a href="#projects" class="btn primary">See my projects</a>
+      <a href="https://t.me/NJ_CHE4TS_FF_OFC" target="_blank" rel="noopener noreferrer" class="btn">Join on Telegram</a>
+      <!-- TODO: replace # with your real YouTube channel URL -->
+      <a href="#" target="_blank" rel="noopener noreferrer" class="btn">Watch on YouTube</a>
     </div>
+  </div>
 
-    <footer id="footer">
-        <p>&copy; 2026 NJ DEV All protocols fully operational.</p>
-    </footer>
+  <div class="term" aria-hidden="true">
+    <div class="term-bar"><i></i><i></i><i></i><span>nishant.py</span></div>
+<pre id="typed"></pre>
+  </div>
+</header>
 
-    <!-- Interactive Filtering Script -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            const projectCards = document.querySelectorAll('.project-card');
+<section class="block" id="skills">
+  <div class="sec-head">
+    <h2>What I do</h2>
+    <p>Three areas I work in every day.</p>
+  </div>
+  <div class="grid">
+    <article class="card">
+      <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></div>
+      <h3>Interface design</h3>
+      <p>Responsive dark-mode layouts with glass effects, clean type and smooth, restrained motion.</p>
+    </article>
+    <article class="card">
+      <div class="ico"><svg viewBox="0 0 24 24"><path d="M8 9l-4 3 4 3M16 9l4 3-4 3M13.5 6l-3 12"/></svg></div>
+      <h3>Android tooling</h3>
+      <p>Scripts for analysing native binaries, patching instructions and optimising Android systems.</p>
+    </article>
+    <article class="card">
+      <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 15a4 4 0 014-4 5 5 0 019.6-1A3.5 3.5 0 0117 17H8a4 4 0 01-4-2z"/></svg></div>
+      <h3>Static hosting</h3>
+      <p>Lightweight, zero-cost frontends deployed on GitHub Pages that load almost instantly.</p>
+    </article>
+  </div>
+</section>
 
-            filterButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
+<section class="block" id="projects">
+  <div class="sec-head">
+    <h2>Projects</h2>
+    <p>Filter by the language or field you care about.</p>
+  </div>
 
-                    const targetFilter = button.getAttribute('data-filter');
+  <div class="filters" role="group" aria-label="Filter projects">
+    <button class="active" data-filter="all">All</button>
+    <button data-filter="cpp">C++</button>
+    <button data-filter="python">Python</button>
+    <button data-filter="reverse-engineering">Reverse engineering</button>
+    <button data-filter="linux">Linux</button>
+  </div>
 
-                    projectCards.forEach(card => {
-                        const cardTags = card.getAttribute('data-tags').split(',');
+  <div class="grid">
+    <article class="card proj" data-tags="cpp,python">
+      <div>
+        <div class="status done"><i></i>Completed</div>
+        <h3>VectorCalc Engine</h3>
+        <p>A command-line math engine that parses trigonometry, roots and nested expressions safely.</p>
+      </div>
+      <div>
+        <div class="tags"><span class="tag">C++</span><span class="tag">Python</span></div>
+        <!-- TODO: replace # with your repo URL -->
+        <a class="plink" href="#">View source</a>
+      </div>
+    </article>
 
-                        if (targetFilter === 'all' || cardTags.includes(targetFilter)) {
-                            card.classList.remove('hidden');
-                        } else {
-                            card.classList.add('hidden');
-                        }
-                    });
-                });
-            });
-        });
-    </script>
+    <article class="card proj" data-tags="python,reverse-engineering">
+      <div>
+        <div class="status live"><i></i>Active</div>
+        <h3>DexArmor Patching Utility</h3>
+        <p>Automated scripts that analyse native Android binaries, map memory and rewrite instructions.</p>
+      </div>
+      <div>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Reverse engineering</span></div>
+        <a class="plink" href="#">View source</a>
+      </div>
+    </article>
+
+    <article class="card proj" data-tags="linux">
+      <div>
+        <div class="status"><i></i>Research</div>
+        <h3>System Sandbox Environment</h3>
+        <p>A custom test environment for mobile architecture, with performance tuning and low-level diagnostics.</p>
+      </div>
+      <div>
+        <div class="tags"><span class="tag">Linux</span></div>
+        <a class="plink" href="#">Read documentation</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<div class="toast" id="toast" role="status">
+  <i></i><p>Hosted securely on GitHub Pages.</p>
+  <button aria-label="Dismiss notification">&times;</button>
+</div>
+
+<footer id="contact">
+  <div class="soc">
+    <a href="https://t.me/NJ_CHE4TS_FF_OFC" target="_blank" rel="noopener noreferrer">Telegram</a>
+    <a href="#" target="_blank" rel="noopener noreferrer">YouTube</a>
+  </div>
+  <p>&copy; 2026 NJ Dev. All rights reserved.</p>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  /* Project filter */
+  const fbtns = document.querySelectorAll('.filters button');
+  const cards = document.querySelectorAll('.proj');
+  fbtns.forEach(b => b.addEventListener('click', () => {
+    fbtns.forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    const f = b.dataset.filter;
+    cards.forEach(c => { c.hidden = !(f === 'all' || c.dataset.tags.split(',').includes(f)); });
+  }));
+
+  /* Mobile menu */
+  const mb = document.querySelector('.menu-btn'), menu = document.getElementById('menu');
+  const setMenu = o => { menu.classList.toggle('open', o); mb.setAttribute('aria-expanded', o); };
+  mb.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+
+  /* Toast: auto-hide + close button */
+  const toast = document.getElementById('toast');
+  const hide = () => { toast.classList.add('out'); setTimeout(() => toast.remove(), 500); };
+  toast.querySelector('button').addEventListener('click', hide);
+  setTimeout(hide, 6000);
+
+  /* Card spotlight follows cursor */
+  document.querySelectorAll('.card').forEach(c => c.addEventListener('pointermove', e => {
+    const r = c.getBoundingClientRect();
+    c.style.setProperty('--x', (e.clientX - r.left) + 'px');
+    c.style.setProperty('--y', (e.clientY - r.top) + 'px');
+  }));
+
+  /* Hero terminal typing (static if reduced motion) */
+  const out = document.getElementById('typed');
+  const lines = [
+    '<span class="c"># portfolio.py</span>',
+    '<span class="k">class</span> <span class="f">Developer</span>:',
+    '    name  = <span class="s">"Nishant Jadhav"</span>',
+    '    focus = [<span class="s">"web UI"</span>, <span class="s">"Android"</span>, <span class="s">"Python"</span>]',
+    '    open_to_work = <span class="k">True</span>',
+    '',
+    '<span class="f">print</span>(Developer.name)'
+  ];
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (still) { out.innerHTML = lines.join('\n'); return; }
+  let i = 0;
+  (function next() {
+    if (i >= lines.length) { out.innerHTML = lines.join('\n') + '<span class="caret"></span>'; return; }
+    out.innerHTML = lines.slice(0, ++i).join('\n') + '<span class="caret"></span>';
+    setTimeout(next, 380);
+  })();
+});
+</script>
 </body>
 </html>
