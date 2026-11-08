@@ -1,51 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#123b70">
-  <meta name="description" content="MahaDBT 2.0 - Maharashtra Direct Benefit Transfer Portal">
-  <title>MahaDBT 2.0 | Maharashtra Government</title>
-  <style>
-    * { box-sizing: border-box; }
-    body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: #202b3c; background: #f3f6fa; }
-    header { background: #123b70; color: white; padding: 18px 5%; display: flex; align-items: center; gap: 16px; }
-    .emblem { width: 52px; height: 52px; border: 2px solid #fff; border-radius: 50%; display: grid; place-items: center; font-size: 11px; text-align: center; font-weight: bold; }
-    header h1 { margin: 0; font-size: clamp(19px, 3vw, 27px); }
-    header p { margin: 5px 0 0; font-size: 13px; opacity: .9; }
-    main { max-width: 920px; margin: 48px auto; padding: 0 20px; }
-    .panel { background: white; border-radius: 12px; padding: clamp(24px, 5vw, 48px); box-shadow: 0 8px 28px rgba(20,45,80,.09); text-align: center; }
-    .tag { display: inline-block; color: #1456a0; background: #e9f2ff; border-radius: 30px; padding: 7px 13px; font-size: 12px; font-weight: bold; letter-spacing: .4px; }
-    h2 { margin: 18px 0 10px; font-size: clamp(23px, 4vw, 34px); color: #18365e; }
-    .intro { max-width: 650px; margin: 0 auto; line-height: 1.65; color: #586579; }
-    .actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 28px; }
-    a.button { display: inline-block; text-decoration: none; padding: 13px 21px; border-radius: 7px; font-weight: bold; }
-    .primary { color: white; background: #1456a0; }
-    .secondary { color: #1456a0; border: 1px solid #1456a0; background: white; }
-    .notice { margin-top: 25px; padding: 14px 16px; background: #fff8e7; border-left: 4px solid #e4a526; text-align: left; color: #674d16; line-height: 1.5; font-size: 14px; }
-    footer { text-align: center; color: #718096; font-size: 12px; padding: 22px; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#123d70">
+<title>MahaDBT 2.0 — Frontend Demo</title>
+<style>
+:root{--navy:#123d70;--blue:#1765a8;--blue2:#0e4d88;--gold:#e7b34c;--ink:#203047;--muted:#66758a;--bg:#f3f6fa;--line:#dce4ed;--white:#fff;--green:#18845a}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 "Segoe UI",Arial,sans-serif}
+a{color:inherit;text-decoration:none}button,input,select{font:inherit}button{cursor:pointer}
+.demo-ribbon{background:#fff4d8;color:#6b4a0c;text-align:center;padding:7px 12px;font-size:12px;border-bottom:1px solid #eed89e}
+.utility{background:#0b2e56;color:#eaf2fb;padding:7px 4%;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px}
+.utility a{margin-left:15px}
+.brandbar{background:#fff;padding:17px 4%;display:flex;align-items:center;gap:15px;border-bottom:1px solid #e3e8ef}
+.seal{width:62px;height:62px;border:2px solid var(--navy);border-radius:50%;display:grid;place-items:center;color:var(--navy);font-size:10px;font-weight:800;text-align:center;line-height:1.15;flex:none}
+.brand-copy{flex:1}.brand-copy .mr{font-weight:700;color:#263e5c;font-size:clamp(16px,2.3vw,22px)}.brand-copy .en{font-weight:700;color:var(--navy);font-size:clamp(17px,2.5vw,25px)}.brand-copy small{display:block;color:#69778a;font-size:12px}
+.brand-side{font-weight:700;color:var(--navy);text-align:right;font-size:13px}
+.nav{background:var(--navy);color:white;padding:0 4%;display:flex;align-items:center;gap:0;min-height:48px;position:sticky;top:0;z-index:10;box-shadow:0 3px 8px #102f501f}
+.nav a,.nav button{padding:14px 15px;color:#fff;font-size:13px;border:0;background:none}
+.nav a:hover,.nav button:hover{background:#ffffff1a}
+.nav .spacer{flex:1}
+.nav .login-link{background:var(--gold);color:#17375a;font-weight:700;border-radius:4px;margin:6px 0;padding:8px 17px}
+.menu-toggle{display:none}
+.hero{background:linear-gradient(110deg,#0d396b 0%,#1766a5 65%,#2678ae 100%);color:#fff;padding:44px 5% 40px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:360px;height:360px;border:1px solid #ffffff24;border-radius:50%;right:7%;top:-180px;box-shadow:0 0 0 35px #ffffff0b,0 0 0 75px #ffffff08}
+.hero-inner{max-width:1180px;margin:auto;position:relative;z-index:1}
+.eyebrow{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#d6e9fa;font-weight:700}
+.hero h1{font-size:clamp(27px,4.5vw,43px);line-height:1.15;margin:12px 0;max-width:720px}
+.hero p{max-width:690px;color:#e1edf8;margin:0 0 24px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:5px;padding:11px 18px;font-weight:700;font-size:13px}
+.btn-gold{background:var(--gold);color:#18395e}.btn-outline{border:1px solid #ffffffa8;color:white;background:#ffffff0d}
+.container{max-width:1180px;margin:0 auto;padding:30px 22px}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-bottom:17px}
+.section-head h2{font-size:22px;color:var(--navy);margin:0}.section-head p{color:var(--muted);margin:3px 0 0;font-size:13px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:-5px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:8px;padding:18px;display:flex;gap:13px;align-items:center;box-shadow:0 4px 15px #17395c08}
+.stat-icon{width:42px;height:42px;display:grid;place-items:center;border-radius:9px;background:#eaf3fc;color:var(--blue);font-size:20px}
+.stat strong{display:block;color:var(--navy);font-size:19px}.stat span{color:var(--muted);font-size:12px}
+.quick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.quick{background:#fff;border:1px solid var(--line);border-radius:8px;padding:21px;transition:.2s}
+.quick:hover{transform:translateY(-3px);box-shadow:0 8px 22px #18395c12}
+.quick .ico{font-size:25px}.quick h3{font-size:16px;color:var(--navy);margin:9px 0 5px}.quick p{font-size:13px;color:var(--muted);margin:0 0 14px}.quick a{color:var(--blue);font-size:13px;font-weight:700}
+.content-grid{display:grid;grid-template-columns:1.35fr .85fr;gap:18px}
+.box{background:#fff;border:1px solid var(--line);border-radius:8px;padding:20px}
+.box h3{margin:0 0 15px;color:var(--navy);font-size:17px}
+.notice-item{padding:12px 0;border-top:1px solid #edf0f4;display:flex;gap:12px;font-size:13px}
+.notice-item:first-of-type{border-top:0}.date-chip{background:#edf4fb;color:var(--blue);border-radius:5px;padding:5px 8px;height:max-content;font-weight:700;font-size:11px}
+.scheme-list{display:grid;gap:10px}.scheme{padding:12px;border:1px solid #e6ebf1;border-radius:6px;font-size:13px}.scheme strong{display:block;color:#294767;margin-bottom:3px}.scheme span{color:var(--muted);font-size:12px}
+footer{background:#102f55;color:#dbe7f4;margin-top:20px;padding:28px 5% 18px}
+.footer-inner{max-width:1180px;margin:auto;display:flex;justify-content:space-between;gap:25px;flex-wrap:wrap}
+footer h3{margin:0 0 8px;color:#fff;font-size:15px}footer p,footer a{font-size:12px;color:#dbe7f4}footer a{display:block;margin:5px 0}.copyright{text-align:center;border-top:1px solid #ffffff2a;margin:20px auto 0;padding-top:14px;font-size:11px;color:#b9c9da}
+.modal-backdrop{position:fixed;inset:0;background:#07182dcc;z-index:30;display:none;align-items:center;justify-content:center;padding:18px}
+.modal-backdrop.show{display:flex}.modal{width:min(460px,100%);background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 20px 60px #0004}
+.modal-head{background:var(--navy);color:#fff;padding:17px 21px;display:flex;justify-content:space-between;align-items:center}.modal-head h2{font-size:18px;margin:0}.close{background:none;border:0;color:#fff;font-size:25px}
+.modal-body{padding:22px}.demo-warning{background:#fff5dc;color:#704d0a;padding:10px;border-radius:5px;font-size:12px;margin-bottom:15px}
+.field{display:block;margin:12px 0}.field span{display:block;font-size:12px;font-weight:700;color:#46566b;margin-bottom:5px}.field input,.field select{width:100%;padding:11px;border:1px solid #ccd6e2;border-radius:5px;background:#fff}
+.full{width:100%;margin-top:10px}.modal-note{text-align:center;color:var(--muted);font-size:12px;margin:14px 0 0}
+.toast{position:fixed;bottom:20px;right:20px;background:#173d67;color:#fff;padding:12px 16px;border-radius:6px;box-shadow:0 5px 20px #0002;display:none;z-index:40;font-size:13px}
+@media(max-width:800px){.stats{grid-template-columns:repeat(2,1fr)}.quick-grid{grid-template-columns:repeat(2,1fr)}.content-grid{grid-template-columns:1fr}.brand-side{display:none}.nav a:not(.login-link){display:none}.nav.open{display:block;padding-bottom:8px}.nav.open a{display:block}.nav .spacer{display:none}.menu-toggle{display:block!important;margin-left:auto}.nav{min-height:48px}.nav .login-link{margin-left:0}}
+@media(max-width:520px){.utility{justify-content:center}.brandbar{padding:12px 4%;gap:10px}.seal{width:48px;height:48px;font-size:8px}.brand-copy small{font-size:10px}.hero{padding:34px 6%}.container{padding:24px 15px}.stats{gap:9px}.stat{padding:12px}.stat-icon{width:35px;height:35px}.stat strong{font-size:16px}.quick-grid{grid-template-columns:1fr}.section-head{display:block}.section-head p{margin-top:5px}}
+</style>
 </head>
 <body>
-  <header>
-    <div class="emblem" aria-label="Government portal">GOVT.<br>MH</div>
-    <div>
-      <h1>महाराष्ट्र शासन | Government of Maharashtra</h1>
-      <p>MahaDBT 2.0 · Direct Benefit Transfer Portal</p>
+<div class="demo-ribbon"><strong>DEMO FRONTEND</strong> — Independent design concept, not an official Government of Maharashtra website. Do not enter real personal information.</div>
+<div class="utility">
+  <div>Government of Maharashtra · महाराष्ट्र शासन</div>
+  <div><a href="#main">Skip to main content</a><a href="#footer">Contact</a><span style="margin-left:14px">A− &nbsp; A &nbsp; A+</span></div>
+</div>
+<header class="brandbar">
+  <div class="seal">MAHARASHTRA<br>GOVERNMENT</div>
+  <div class="brand-copy">
+    <div class="mr">महाराष्ट्र शासन</div>
+    <div class="en">MahaDBT 2.0</div>
+    <small>Direct Benefit Transfer Portal · आपले सरकार</small>
+  </div>
+  <div class="brand-side">DIRECT BENEFIT<br>TRANSFER</div>
+</header>
+<nav class="nav" id="navbar">
+  <button class="menu-toggle" onclick="toggleMenu()">☰ &nbsp; Menu</button>
+  <a href="#home">Home</a><a href="#schemes">Schemes</a><a href="#services">Services</a><a href="#notices">Notices</a><a href="#footer">Contact Us</a>
+  <span class="spacer"></span>
+  <button class="login-link" onclick="openModal('login')">Login</button>
+  <button class="login-link" style="margin-left:8px;background:#fff;color:#174675" onclick="openModal('register')">New Applicant</button>
+</nav>
+<main id="main">
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div class="eyebrow">Maharashtra Direct Benefit Transfer</div>
+    <h1>One Portal. Multiple Schemes.<br>Direct Benefits to Citizens.</h1>
+    <p>A unified digital platform concept for discovering government schemes, understanding eligibility and tracking benefit applications.</p>
+    <div class="hero-actions">
+      <button class="btn btn-gold" onclick="openModal('login')">Applicant Login&nbsp; →</button>
+      <a class="btn btn-outline" href="#schemes">Explore Schemes</a>
     </div>
-  </header>
-  <main>
-    <section class="panel">
-      <span class="tag">OFFICIAL PORTAL ACCESS</span>
-      <h2>MahaDBT 2.0</h2>
-      <p class="intro">Access the Maharashtra Direct Benefit Transfer portal for government schemes, scholarships and citizen services.</p>
-      <div class="actions">
-        <a class="button primary" href="https://mahadbt2.maharashtra.gov.in/" target="_blank" rel="noopener noreferrer">Open MahaDBT 2.0</a>
-        <a class="button secondary" href="https://mahadbt.maharashtra.gov.in/home/faq" target="_blank" rel="noopener noreferrer">Help &amp; FAQs</a>
-      </div>
-      <div class="notice"><strong>Important:</strong> This is a standalone portal launcher, not a copy of the government's application system. Sign-in, OTP, applications and payment/status services work only on the official MahaDBT website.</div>
-    </section>
-  </main>
-  <footer>For secure services, verify that the address bar shows mahadbt2.maharashtra.gov.in.</footer>
+  </div>
+</section>
+<div class="container">
+  <div class="stats">
+    <div class="stat"><div class="stat-icon">▤</div><div><strong>Multiple</strong><span>Government Schemes</span></div></div>
+    <div class="stat"><div class="stat-icon">♙</div><div><strong>One Portal</strong><span>Citizen Access</span></div></div>
+    <div class="stat"><div class="stat-icon">✓</div><div><strong>Digital</strong><span>Application Process</span></div></div>
+    <div class="stat"><div class="stat-icon">⌕</div><div><strong>Online</strong><span>Information & Updates</span></div></div>
+  </div>
+</div>
+<section class="container" id="services">
+  <div class="section-head"><div><h2>Quick Access</h2><p>Common services and applicant resources</p></div></div>
+  <div class="quick-grid">
+    <article class="quick"><div class="ico">🧑‍🎓</div><h3>Applicant Login</h3><p>Demo entry point for an existing applicant account.</p><a href="#" onclick="openModal('login');return false">Open login →</a></article>
+    <article class="quick"><div class="ico">📝</div><h3>New Registration</h3><p>View the registration interface concept for new applicants.</p><a href="#" onclick="openModal('register');return false">Register →</a></article>
+    <article class="quick"><div class="ico">🎓</div><h3>Scholarship Schemes</h3><p>Browse example categories of student support schemes.</p><a href="#schemes">View schemes →</a></article>
+    <article class="quick"><div class="ico">📄</div><h3>Application Status</h3><p>Learn where application tracking would appear in a connected portal.</p><a href="#" onclick="notify('Application tracking is not connected in this demo.');return false">Check status →</a></article>
+    <article class="quick"><div class="ico">📚</div><h3>Guidelines & Documents</h3><p>Review scheme guidance and common document categories.</p><a href="#notices">View information →</a></article>
+    <article class="quick"><div class="ico">❔</div><h3>Help & Support</h3><p>Find assistance for portal access and application questions.</p><a href="#footer">Get help →</a></article>
+  </div>
+</section>
+<section class="container" id="schemes">
+  <div class="section-head"><div><h2>Scheme Categories</h2><p>Illustrative categories — check the official portal for current schemes and eligibility.</p></div></div>
+  <div class="content-grid">
+    <div class="box">
+      <h3>Student & Education Support</h3>
+      <div class="scheme"><strong>Post-Matric Scholarship</strong><span>Financial assistance category for eligible students pursuing post-secondary education.</span></div>
+      <div class="scheme"><strong>Tuition & Examination Fee Assistance</strong><span>Example category for eligible tuition and examination fee support.</span></div>
+      <div class="scheme"><strong>Merit-Based Scholarships</strong><span>Illustrative category for education support based on scheme-specific criteria.</span></div>
+      <div class="scheme"><strong>Hostel & Maintenance Assistance</strong><span>Example category of support subject to applicable rules.</span></div>
+    </div>
+    <div class="box" id="notices">
+      <h3>Announcements & Notices</h3>
+      <div class="notice-item"><span class="date-chip">INFO</span><div><strong>Scheme information</strong><br><span style="color:#68778a">Check official scheme guidelines before applying.</span></div></div>
+      <div class="notice-item"><span class="date-chip">HELP</span><div><strong>Applicant assistance</strong><br><span style="color:#68778a">Keep documents ready as required by the selected scheme.</span></div></div>
+      <div class="notice-item"><span class="date-chip">NOTE</span><div><strong>Official portal reminder</strong><br><span style="color:#68778a">Use the government website for actual applications and status checks.</span></div></div>
+    </div>
+  </div>
+</section>
+</main>
+<footer id="footer">
+  <div class="footer-inner">
+    <div><h3>MahaDBT 2.0 — Demo</h3><p>Independent frontend demonstration inspired by public-facing government portal patterns.<br>This page is not affiliated with or operated by the Government of Maharashtra.</p></div>
+    <div><h3>Useful Links</h3><a href="https://mahadbt2.maharashtra.gov.in/" target="_blank" rel="noopener">Official MahaDBT 2.0 portal ↗</a><a href="#schemes">Scheme categories</a><a href="#services">Applicant services</a></div>
+    <div><h3>Important</h3><p>For real applications, login, eligibility and payments,<br>visit the official government portal directly.</p></div>
+  </div>
+  <div class="copyright">© Demo interface · Not an official government service</div>
+</footer>
+
+<div class="modal-backdrop" id="modalBackdrop" onclick="backdropClose(event)">
+  <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-head"><h2 id="modalTitle">Applicant Login — Demo</h2><button class="close" aria-label="Close" onclick="closeModal()">×</button></div>
+    <div class="modal-body">
+      <div class="demo-warning">This is a visual-only demo. Do not enter your real username, password, Aadhaar number, phone number or OTP.</div>
+      <form onsubmit="event.preventDefault();notify('Demo only — no information was sent or saved.');closeModal()">
+        <label class="field"><span>Demo User ID</span><input type="text" placeholder="Enter sample user ID" autocomplete="off"></label>
+        <label class="field"><span>Demo Password</span><input type="password" placeholder="Sample password only" autocomplete="off"></label>
+        <button class="btn btn-gold full" type="submit">Continue (Demo)</button>
+      </form>
+      <p class="modal-note">No credentials are collected, transmitted or stored by this page.</p>
+    </div>
+  </section>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script>
+function openModal(kind){
+  const title=document.getElementById('modalTitle');
+  title.textContent=kind==='register'?'New Applicant Registration — Demo':'Applicant Login — Demo';
+  document.getElementById('modalBackdrop').classList.add('show');
+}
+function closeModal(){document.getElementById('modalBackdrop').classList.remove('show')}
+function backdropClose(e){if(e.target.id==='modalBackdrop')closeModal()}
+function notify(message){
+  const t=document.getElementById('toast');t.textContent=message;t.style.display='block';
+  clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.style.display='none',3200);
+}
+function toggleMenu(){document.getElementById('navbar').classList.toggle('open')}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+</script>
 </body>
 </html>
